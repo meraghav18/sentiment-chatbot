@@ -2,45 +2,45 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Python Chatbot</title>
+  <title>Chatbot</title>
   <style>
     body {
       font-family: Arial, sans-serif;
+      background: #f0f0f0;
       display: flex;
       justify-content: center;
       align-items: center;
       height: 100vh;
-      background: #f0f0f0;
     }
     .chat-container {
       background: white;
+      padding: 20px;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0,0,0,0.2);
       width: 400px;
       max-width: 90%;
-      padding: 20px;
     }
     #chat-box {
       border: 1px solid #ccc;
-      height: 300px;
-      padding: 10px;
+      height: 250px;
       overflow-y: auto;
       margin-bottom: 10px;
+      padding: 10px;
       border-radius: 5px;
       background: #fafafa;
     }
     .user { color: blue; margin: 5px 0; }
     .bot { color: green; margin: 5px 0; }
     input[type=text] {
-      width: 75%;
-      padding: 10px;
+      width: 70%;
+      padding: 8px;
       border-radius: 5px;
       border: 1px solid #ccc;
     }
     button {
-      padding: 10px 15px;
-      border-radius: 5px;
+      padding: 8px 12px;
       border: none;
+      border-radius: 5px;
       background: #28a745;
       color: white;
       cursor: pointer;
@@ -51,9 +51,9 @@
 <body>
 
   <div class="chat-container">
-    <h2>Python Chatbot</h2>
+    <h2>Chatbot</h2>
     <div id="chat-box"></div>
-    <input type="text" id="user-input" placeholder="Type your message..." />
+    <input type="text" id="user-input" placeholder="Type a message..." />
     <button onclick="sendMessage()">Send</button>
   </div>
 
@@ -65,7 +65,7 @@
       const chatBox = document.getElementById("chat-box");
       chatBox.innerHTML += `<p class="user"><b>You:</b> ${userInput}</p>`;
 
-      const response = await fetch("https://sentiment-chatbot-3.onrender.com/chat", {
+      const response = await fetch("https://sentiment-chatbot-4.onrender.com/chat", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ message: userInput })
