@@ -1,6 +1,7 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, render_template
 from textblob import TextBlob
 from flask_cors import CORS
+
 app = Flask(__name__)
 CORS(app)
 
@@ -26,14 +27,16 @@ def chatbot_reply(user_input):
     elif sentiment == "negative":
         return "I'm sorry to hear that. I'm here for you."
     elif sentiment == "neutral":
-        return "Got It Tell me more about this"
+        return "Got it! Tell me more about this."
     else:
         return "Thanks for sharing. Tell me more."
 
+# Serve chatbot page
 @app.route("/")
 def home():
-    return "Chatbot API is running 🚀"
+    return render_template("chatbot.html")
 
+# API endpoint
 @app.route("/chat", methods=["POST"])
 def chat():
     data = request.get_json()
