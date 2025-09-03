@@ -9,7 +9,7 @@ def get_sentiment(text):
     elif polarity < -0.2:
         return "negative"
     else:
-        return "neutral";
+        return "neutral"
 
 
 def chatbot_reply(user_input):
@@ -22,6 +22,8 @@ def chatbot_reply(user_input):
         return "I'm glad to hear that!"
     elif sentiment == "negative":
         return "I'm sorry to hear that. I'm here for you."
+    elif sentiment == "neutral":
+        return "Got It Tell me more about this"
     else:
         return "Thanks for sharing. Tell me more."
 
