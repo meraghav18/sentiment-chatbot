@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 from textblob import TextBlob
 from flask_cors import CORS
 app = Flask(__name__)
-CORS(app, origins=["https://meraghav18.github.io"])
+CORS(app)
 
 def get_sentiment(text):
     blob = TextBlob(text)
