@@ -1,5 +1,7 @@
+from flask import Flask, request, jsonify
 from textblob import TextBlob
 
+app = Flask(__name__)
 
 def get_sentiment(text):
     blob = TextBlob(text)
@@ -11,10 +13,10 @@ def get_sentiment(text):
     else:
         return "neutral"
 
-
 def chatbot_reply(user_input):
     user_input_lower = user_input.lower()
     sentiment = get_sentiment(user_input)
+
     if "hi" in user_input_lower or "hello" in user_input_lower:
         return "Hello there! How can I help you today?"
 
@@ -27,12 +29,19 @@ def chatbot_reply(user_input):
     else:
         return "Thanks for sharing. Tell me more."
 
+@app.route("/")
+def home():
+    return "Chatbot API is running 🚀"
 
-print(" ChatBot: Hello! Type 'bye' to exit.")
-while True:
-    user_input = input("You: ")
-    if user_input.lower() in ["bye", "exit", "quit"]:
-        print(" ChatBot: Goodbye! Take care! All the best for the future! ")
-        break
-    response = chatbot_reply(user_input)
-    print(" ChatBot:", response)
+@app.route("/chat", methods=["POST"])
+def chat():
+    data = request.get_json()
+    user_message = data.get("message", "")
+    if user_message.lower() in ["bye", "exit", "quit"]:
+        return jsonify({"response": "Goodbye! Take care! All the best for the future!"})
+    
+    response = chatbot_reply(user_message)
+    return jsonify({"response": response})
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=5000)

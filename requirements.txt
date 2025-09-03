@@ -1,1 +1,3 @@
+textblobflask
 textblob
+gunicorn
